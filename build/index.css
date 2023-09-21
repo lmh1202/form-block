@@ -1,0 +1,79 @@
+/*!****************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/editor.scss ***!
+  \****************************************************************************************************************************************************************************************************************************************/
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+.wp-block-create-block-form-block {
+  text-align: center;
+}
+.wp-block-create-block-form-block .form-block-title .components-text {
+  margin-bottom: 0;
+}
+.wp-block-create-block-form-block .form-block-radio {
+  margin-bottom: 50px;
+}
+.wp-block-create-block-form-block .form-block-radio .components-flex {
+  flex-direction: row;
+  gap: 95px;
+}
+.wp-block-create-block-form-block .form-block-textarea textarea {
+  border-radius: 10px;
+}
+.wp-block-create-block-form-block .form-block-rating {
+  margin-top: 50px;
+}
+/*!*********************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/editor/Star.scss ***!
+  \*********************************************************************************************************************************************************************************************************************************************/
+@charset "UTF-8";
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.form-block-rate {
+  display: inline-block;
+  height: 46px;
+  padding: 0 10px;
+}
+
+.form-block-rate:not(:checked) > input {
+  position: absolute;
+  top: -9999px;
+}
+
+.form-block-rate:not(:checked) > label {
+  float: right;
+  width: 1em;
+  overflow: hidden;
+  white-space: nowrap;
+  cursor: pointer;
+  font-size: 30px;
+  color: #ccc;
+}
+
+.form-block-rate:not(:checked) > label:before {
+  content: "★ ";
+}
+
+.form-block-rate > input:checked ~ label {
+  color: #ffc700;
+}
+
+.form-block-rate:not(:checked) > label:hover,
+.form-block-rate:not(:checked) > label:hover ~ label {
+  color: #deb217;
+}
+
+.form-block-rate > input:checked + label:hover,
+.form-block-rate > input:checked + label:hover ~ label,
+.form-block-rate > input:checked ~ label:hover,
+.form-block-rate > input:checked ~ label:hover ~ label,
+.form-block-rate > label:hover ~ input:checked ~ label {
+  color: #c59b08;
+}
+
+/*# sourceMappingURL=index.css.map*/

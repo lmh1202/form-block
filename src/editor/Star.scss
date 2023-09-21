@@ -1,0 +1,46 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.form-block-rate {
+    display: inline-block;
+    height: 46px;
+    padding: 0 10px;
+}
+
+.form-block-rate:not(:checked)>input {
+    position: absolute;
+    top: -9999px;
+}
+
+.form-block-rate:not(:checked)>label {
+    float: right;
+    width: 1em;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+    font-size: 30px;
+    color: #ccc;
+}
+
+.form-block-rate:not(:checked)>label:before {
+    content: '★ ';
+}
+
+.form-block-rate>input:checked~label {
+    color: #ffc700;
+}
+
+.form-block-rate:not(:checked)>label:hover,
+.form-block-rate:not(:checked)>label:hover~label {
+    color: #deb217;
+}
+
+.form-block-rate>input:checked+label:hover,
+.form-block-rate>input:checked+label:hover~label,
+.form-block-rate>input:checked~label:hover,
+.form-block-rate>input:checked~label:hover~label,
+.form-block-rate>label:hover~input:checked~label {
+    color: #c59b08;
+}
