@@ -4,17 +4,14 @@
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-import {
-	Dashicon,
-	__experimentalText as Text,
-	RadioControl,
-	TextareaControl,
-} from '@wordpress/components';
+// import { Dashicon } from '@wordpress/components';
 
 import {
 	useBlockProps,
 } from '@wordpress/block-editor';
+
 import Star from './editor/Star';
+
 
 
 /**
@@ -24,20 +21,52 @@ import Star from './editor/Star';
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#save
  *
- * @return {WPElement} Element to render.
+ * @return {WPElement} Element to render.	
  */
-export default function save({ attributes }) {
-	// return (
-	// 	<p {...useBlockProps.save()}>
-	// 		{'Form Block – hello from the saved content!'}
-	// 	</p>
-	// );
+export default function save({ attributes, setAttributes }) {
 	return (
 		<div
 			{...useBlockProps.save()}
 		>
-			<p>Cmt:{attributes.textArea.content}</p>
-			<p>Rating:{attributes.rating}</p>
-		</div>
+			<div className='form-block-dash-icon'>
+				{/* <Dashicon
+					icon="email"
+					style={{ fontSize: "54px", width: "54px", height: "54px" }}
+				/> */}
+			</div>
+
+			<div className='form-block-title>'>
+				{attributes.title}
+			</div>
+
+			<div className='form-block-subtitle'>
+				{attributes.subtitle}
+			</div>
+
+			<hr />
+
+			{
+				attributes.toggle && <div className='form-block-radio'>
+					<span>Would you recommend it to your friends and colleagues?</span><br />
+					<input type="radio" checked id="yes" name="radio" value="yes" />
+					<label for="yes" id='yes-label'>Yes</label>
+					<input type="radio" id="no" name="radio" value="no" />
+					<label for="no">No</label>
+				</div>
+			}
+
+
+			<div className='form-block-textarea'>
+				<label for="textarea">Do you have any suggestions to improve our product and service?</label>
+				<textarea style={{ height: attributes.textArea.heightProp }} value={attributes.textArea.content} name='form-block-textarea' id='form-block-textarea'></textarea>
+			</div>
+
+			<Star props={{ attributes, setAttributes }} />
+
+			<button id='form-block-submit-btn'>
+				Submit
+			</button>
+
+		</div >
 	);
 }

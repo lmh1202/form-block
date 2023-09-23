@@ -1,11 +1,113 @@
 /*!***************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/style.scss ***!
   \***************************************************************************************************************************************************************************************************************************************/
+@charset "UTF-8";
 /**
  * The following styles get applied both on the front of your site
  * and in the editor.
  *
  * Replace them with your own styles or remove the file completely.
  */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.form-block-rate {
+  display: inline-block;
+  height: 46px;
+  padding: 0px;
+}
+
+.form-block-rate:not(:checked) > input {
+  position: absolute;
+  top: -9999px;
+}
+
+.form-block-rate:not(:checked) > label {
+  float: right;
+  width: 1em;
+  overflow: hidden;
+  white-space: nowrap;
+  cursor: pointer;
+  font-size: 30px;
+  color: #ccc;
+  margin-left: 0;
+}
+
+.form-block-rate:not(:checked) > label:before {
+  content: "★ ";
+}
+
+.form-block-rate > input:checked ~ label {
+  color: #ffc700;
+}
+
+.form-block-rate:not(:checked) > label:hover,
+.form-block-rate:not(:checked) > label:hover ~ label {
+  color: #deb217;
+}
+
+.form-block-rate > input:checked + label:hover,
+.form-block-rate > input:checked + label:hover ~ label,
+.form-block-rate > input:checked ~ label:hover,
+.form-block-rate > input:checked ~ label:hover ~ label,
+.form-block-rate > label:hover ~ input:checked ~ label {
+  color: #c59b08;
+}
+
+.wp-block-create-block-form-block {
+  text-align: center;
+}
+.wp-block-create-block-form-block .form-block-title {
+  margin-bottom: 0;
+  font-weight: 300;
+  font-size: 2.617924em;
+}
+.wp-block-create-block-form-block .form-block-subtitle {
+  font-weight: 300;
+  font-size: 1.618em;
+}
+.wp-block-create-block-form-block .form-block-radio {
+  margin-bottom: 50px;
+}
+.wp-block-create-block-form-block .form-block-radio #yes-label {
+  margin-right: 60px;
+}
+.wp-block-create-block-form-block .form-block-textarea textarea {
+  border-radius: 10px;
+}
+
+/***/
+.form-block-front-rate label {
+  position: relative;
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 0.9em;
+  margin-right: 0.9em;
+  margin-bottom: 1.2em;
+  border-right: 0.3em solid transparent;
+  border-bottom: 0.7em solid #ccc;
+  border-left: 0.3em solid transparent;
+  /* Controlls the size of the stars. */
+  font-size: 10px;
+}
+.form-block-front-rate label:before, .form-block-front-rate label:after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  position: absolute;
+  top: 0.6em;
+  left: -1em;
+  border-right: 1em solid transparent;
+  border-bottom: 0.7em solid #ccc;
+  border-left: 1em solid transparent;
+  transform: rotate(-35deg);
+}
+.form-block-front-rate label:after {
+  transform: rotate(35deg);
+}
 
 /*# sourceMappingURL=style-index.css.map*/

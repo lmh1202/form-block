@@ -6,12 +6,8 @@ import {
 
 } from '@wordpress/components';
 
-import {
-    useBlockProps,
-} from '@wordpress/block-editor';
-
 import Star from './Star';
-
+import Sidebar from '../side-bar/Sidebar';
 export default function Editor({ props }) {
     return (
         <>
@@ -23,8 +19,8 @@ export default function Editor({ props }) {
             </div>
 
             <div className='form-block-title'>
-                <Text variant="title.large" as="h1" >
-                    {props.attributes.title}
+                <Text variant="title.large" as="h1" >  {props.attributes.title}
+
                 </Text>
             </div>
 
@@ -35,7 +31,6 @@ export default function Editor({ props }) {
             </div>
 
             <hr />
-
 
             {
                 props.attributes.toggle && <RadioControl
@@ -49,10 +44,8 @@ export default function Editor({ props }) {
                     onChange={(option) => {
                         props.setAttributes({ radio: option })
                     }}
-
                 />
             }
-
 
             <div className='form-block-textarea'>
                 <TextareaControl
@@ -65,7 +58,7 @@ export default function Editor({ props }) {
             </div>
 
             <Star props={{ props }} />
-
+            <Sidebar props={props} />
         </>
     )
 }

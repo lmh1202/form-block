@@ -20,31 +20,74 @@
  *
  * @see https://developer.wordpress.org/reference/functions/register_block_type/
  */
-function create_block_form_block_block_init()
+
+
+add_action('init', 'init');
+
+function init()
 {
     register_block_type(__DIR__ . '/build');
+
+    add_action('wp_ajax_form_block_action',  'handle_ajax');
+    add_action('wp_ajax_nopriv_form_block_action',  'handle_ajax');
+    add_action('wp_enqueue_scripts',  'register_ajax');
+    add_filter('comment_text', 'custom_comment_text', 10, 2);
 }
-add_action('init', 'create_block_form_block_block_init');
 
+function handle_ajax()
+{   
+    if (empty($_POST)) {
+        return false;
+    }
 
+    $comment = $_POST['form_block_comment'] ?: '';
+    $rating = $_POST['form_block_rating'] ?: '';
+    $post_id = $_POST['postID'] ?: '';
 
-add_action('save_post', 'insert_new_comment', 10, 3);
+    if (!$comment && !$rating && !$post_id) {
+        return false;
+    }
 
-function insert_new_comment( $post_id, $post, $update)
+    $author_id = get_post_field('post_author', $post_id);
+    $display_name = get_the_author_meta('nickname', $author_id); 
+
+    $comment_data = array(
+    'comment_post_ID' => $post_id, 
+    'comment_author' => $display_name,   
+    'comment_content' => $comment,
+    'comment_meta' => array('rating'=>$rating)//?? không biết có lưu được cái dl nào vào đây ko => có
+    );
+
+    wp_insert_comment($comment_data);
+    
+    return true;
+}
+
+function register_ajax()
 {
-    // if(empty($post)) {
-    //     return;
-    // }else{
-    //     $comment_data = array(
-    //     'comment_post_ID' => $post_id, 
-    //     'comment_author' => $post->post_author,   
-    //     'comment_content' => $post->post_content
-    //     );
-    
-    //     wp_insert_comment($comment_data);
-    
-    //     return;
-    // }
-
+    wp_register_script('form-block', plugin_dir_url(__FILE__) . 'src/ajax/ajax.js');
+    wp_enqueue_script('form-block'); // Run some code, only on the admin widgets page
+    wp_localize_script(
+        'form-block',
+        'form_block',
+        array(
+            'ajaxurl' => admin_url('admin-ajax.php'),
+        ),
+    );        
 }
 
+function custom_comment_text($comment_text,$comment)
+{
+    $comment_meta = get_comment_meta($comment->comment_ID, 'rating', true);
+    if($comment_meta) {
+        $rating = '<div class="form-block-front-rate">';
+        for($i=intval($comment_meta);$i>=1;$i--){
+            $rating .= '<label></label>';
+        }
+        $rating .= '</div>';
+
+        $comment_text = $comment_text . $rating;
+        return $comment_text;
+    }
+    return $comment_text;
+}

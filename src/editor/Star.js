@@ -10,8 +10,6 @@
  * 
  */
 
-import './Star.scss'
-
 export default function Star({ props }) {
     return (
         <div className='form-block-rating'>

@@ -1,29 +1,13 @@
 /**
- * Retrieves the translation of text.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-i18n/
- */
-import { __ } from '@wordpress/i18n';
-
-/**
  * React hook that is used to mark the block wrapper element.
  * It provides all the necessary props like the class name.
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-import {
-	TextControl,
-	Dashicon,
-	__experimentalText as Text,
-	RadioControl,
-	TextareaControl,
-	ToggleControl,
-	__experimentalNumberControl as NumberControl
-} from '@wordpress/components';
+
 
 import {
 	useBlockProps,
-	InspectorControls,
 } from '@wordpress/block-editor';
 
 /**
@@ -34,6 +18,7 @@ import {
  */
 import './editor.scss';
 import Editor from './editor/Editor';
+import Sidebar from './side-bar/Sidebar';
 
 /**
  * The edit function describes the structure of your block in the context of the
@@ -46,38 +31,7 @@ import Editor from './editor/Editor';
 export default function Edit({ attributes, setAttributes }) {
 	return (
 		<div {...useBlockProps()}>
-
 			<Editor props={{ attributes, setAttributes }} />
-
-			<InspectorControls>
-				<div>
-					<fieldset>
-						<legend>{__('Title', 'form-block')}</legend>
-						<TextControl value={attributes.title} onChange={(nextValue) => setAttributes({ title: nextValue })} />
-					</fieldset>
-					<fieldset>
-						<legend>{__('Subtitle', 'form-block')}</legend>
-						<TextControl value={attributes.subtitle} onChange={(nextValue) => setAttributes({ subtitle: nextValue })} />
-					</fieldset>
-					<fieldset>
-						<ToggleControl
-							label="Hide Radio"
-							checked={attributes.toggle}
-							onChange={(e) => setAttributes({ toggle: e })}
-						/>
-					</fieldset>
-					<fieldset>
-						<legend>
-							{__('Textarea Height', 'form-block')}
-						</legend>
-						<NumberControl
-							value={attributes.textArea.heightProp}
-							onChange={(e) => setAttributes({ textArea: { ...attributes.textArea, heightProp: e } })
-							}
-						/>
-					</fieldset>
-				</div>
-			</InspectorControls>
 		</div>
 	);
 }
