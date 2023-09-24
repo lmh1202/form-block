@@ -11,24 +11,17 @@ import Sidebar from '../side-bar/Sidebar';
 export default function Editor({ props }) {
     return (
         <>
-            <div className='form-block-dash-icon'>
-                <Dashicon
-                    icon="email"
-                    style={{ fontSize: "54px", width: "54px", height: "54px" }}
-                />
+            <div className='form-block-logo'>
+                <img src='logo/logo.jpg' alt='Form Block Logo' />
             </div>
 
-            <div className='form-block-title'>
-                <Text variant="title.large" as="h1" >  {props.attributes.title}
+            <p className='form-block-title'>
+                {props.attributes.title}
+            </p>
 
-                </Text>
-            </div>
-
-            <div className='form-block-subtitle'>
-                <Text variant="title.small" as="h3">
-                    {props.attributes.subtitle}
-                </Text>
-            </div>
+            <p className='form-block-subtitle'>
+                {props.attributes.subtitle}
+            </p>
 
             <hr />
 

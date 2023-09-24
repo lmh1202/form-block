@@ -20,8 +20,6 @@
  *
  * @see https://developer.wordpress.org/reference/functions/register_block_type/
  */
-
-
 add_action('init', 'init');
 
 function init()
@@ -40,11 +38,11 @@ function handle_ajax()
         return false;
     }
 
-    $comment = $_POST['form_block_comment'] ?: '';
-    $rating = $_POST['form_block_rating'] ?: '';
-    $post_id = $_POST['postID'] ?: '';
+    $comment = isset($_POST['form_block_comment']) ? $_POST['form_block_comment'] : '';
+    $rating = isset($_POST['form_block_rating']) ? $_POST['form_block_rating']  : '';
+    $post_id = isset($_POST['postID']) ? intval($_POST['postID']) : '';
 
-    if (!$comment && !$rating && !$post_id) {
+    if (empty($comment) || empty($post_id)) {
         return false;
     }
 
@@ -55,11 +53,14 @@ function handle_ajax()
     'comment_post_ID' => $post_id, 
     'comment_author' => $display_name,   
     'comment_content' => $comment,
-    'comment_meta' => array('rating'=>$rating)//?? không biết có lưu được cái dl nào vào đây ko => có
     );
 
+    if ($rating) {
+        $comment_data['comment_meta'] = array('rating'=>$rating);
+    }
+
     wp_insert_comment($comment_data);
-    
+
     return true;
 }
 
@@ -73,15 +74,15 @@ function register_ajax()
         array(
             'ajaxurl' => admin_url('admin-ajax.php'),
         ),
-    );        
+    );
 }
 
 function custom_comment_text($comment_text,$comment)
 {
-    $comment_meta = get_comment_meta($comment->comment_ID, 'rating', true);
+    $comment_meta = intval(get_comment_meta($comment->comment_ID, 'rating', true));
     if($comment_meta) {
         $rating = '<div class="form-block-front-rate">';
-        for($i=intval($comment_meta);$i>=1;$i--){
+        for ($i=$comment_meta;$i>=1;$i--){
             $rating .= '<label></label>';
         }
         $rating .= '</div>';

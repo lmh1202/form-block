@@ -16,7 +16,6 @@ import {
  *
  * @see https://www.npmjs.com/package/@wordpress/scripts#using-css
  */
-import './editor.scss';
 import Editor from './editor/Editor';
 import Sidebar from './side-bar/Sidebar';
 

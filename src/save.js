@@ -28,20 +28,22 @@ export default function save({ attributes, setAttributes }) {
 		<div
 			{...useBlockProps.save()}
 		>
-			<div className='form-block-dash-icon'>
+			<div className='form-block-logo	'>
+				<img src='logo/logo.jpg' alt='Form Block Logo' />
+
 				{/* <Dashicon
 					icon="email"
 					style={{ fontSize: "54px", width: "54px", height: "54px" }}
 				/> */}
 			</div>
 
-			<div className='form-block-title>'>
+			<p className='form-block-title'>
 				{attributes.title}
-			</div>
+			</p>
 
-			<div className='form-block-subtitle'>
+			<p className='form-block-subtitle'>
 				{attributes.subtitle}
-			</div>
+			</p>
 
 			<hr />
 

@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const urlParams = new URLSearchParams(window.location.search);
         const postID = urlParams.get('p');
 
-        console.log(comment, rating)
+        // console.log(comment, rating)
 
         const formdata = new FormData();
 
@@ -29,10 +29,14 @@ document.addEventListener('DOMContentLoaded', function () {
             redirect: 'follow'
         };
 
-        fetch("https://yaysnippet.test/wp-admin/admin-ajax.php", requestOptions)
-            .then(response => response.text())
-            .then(result => location.reload())
-            .catch(error => console.log('error', error));
+        if (!comment) {
+            return
+        } else {
+            fetch("https://yaysnippet.test/wp-admin/admin-ajax.php", requestOptions)
+                .then(response => response.text())
+                .then(result => location.reload())
+                .catch(error => console.log('error', error));
+        }
     })
 })
 
