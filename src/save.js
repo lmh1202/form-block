@@ -1,40 +1,18 @@
-/**
- * React hook that is used to mark the block wrapper element.
- * It provides all the necessary props like the class name.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
- */
-// import { Dashicon } from '@wordpress/components';
-
 import {
 	useBlockProps,
 } from '@wordpress/block-editor';
 
 import Star from './editor/Star';
-
-
-
-/**
- * The save function defines the way in which the different attributes should
- * be combined into the final markup, which is then serialized by the block
- * editor into `post_content`.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-edit-save/#save
- *
- * @return {WPElement} Element to render.	
- */
+import img from './logo/logo.jpg'
 export default function save({ attributes, setAttributes }) {
+	const imgPath = '';
+
 	return (
 		<div
 			{...useBlockProps.save()}
 		>
 			<div className='form-block-logo	'>
-				<img src='logo/logo.jpg' alt='Form Block Logo' />
-
-				{/* <Dashicon
-					icon="email"
-					style={{ fontSize: "54px", width: "54px", height: "54px" }}
-				/> */}
+				<img src={img} alt='Form Block Logo' />
 			</div>
 
 			<p className='form-block-title'>
@@ -57,18 +35,16 @@ export default function save({ attributes, setAttributes }) {
 				</div>
 			}
 
-
 			<div className='form-block-textarea'>
 				<label for="textarea">Do you have any suggestions to improve our product and service?</label>
-				<textarea style={{ height: attributes.textArea.heightProp }} value={attributes.textArea.content} name='form-block-textarea' id='form-block-textarea'></textarea>
+				<textarea style={{ height: attributes.textArea.heightProp }} value={attributes.textArea.content} id='form-block-textarea'></textarea>
 			</div>
 
-			<Star props={{ attributes, setAttributes }} />
+			<Star />
 
 			<button id='form-block-submit-btn'>
 				Submit
 			</button>
-
 		</div >
 	);
 }

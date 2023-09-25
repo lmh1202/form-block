@@ -1,42 +1,37 @@
 import {
-    Dashicon,
-    __experimentalText as Text,
     RadioControl,
     TextareaControl,
-
 } from '@wordpress/components';
 
 import Star from './Star';
-import Sidebar from '../side-bar/Sidebar';
-export default function Editor({ props }) {
+import img from '../logo/logo.jpg'
+export default function Editor({ attributes }) {
+    const imgPath = '';
     return (
         <>
             <div className='form-block-logo'>
-                <img src='logo/logo.jpg' alt='Form Block Logo' />
+                <img src={img} alt='Form Block Logo' />
             </div>
 
             <p className='form-block-title'>
-                {props.attributes.title}
+                {attributes.title}
             </p>
 
             <p className='form-block-subtitle'>
-                {props.attributes.subtitle}
+                {attributes.subtitle}
             </p>
 
             <hr />
 
             {
-                props.attributes.toggle && <RadioControl
+                attributes.toggle && <RadioControl
                     className='form-block-radio'
                     label="Would you recommend it to your friends and colleagues"
-                    selected={props.attributes.radio}
                     options={[
-                        { label: 'Yes', value: 'yes' },
-                        { label: 'No', value: 'no' },
+                        { label: 'Yes', value: true },
+                        { label: 'No', value: false },
                     ]}
-                    onChange={(option) => {
-                        props.setAttributes({ radio: option })
-                    }}
+                    disabled
                 />
             }
 
@@ -44,14 +39,12 @@ export default function Editor({ props }) {
                 <TextareaControl
                     label="Do you have any suggestions to improve our product and service?"
                     rows={2}
-                    value={props.attributes.textArea.content}
-                    style={{ height: props.attributes.textArea.heightProp }}
-                    onChange={(nextValue) => setAttributes({ textArea: { ...props.attributes.textArea, content: nextValue } })}
+                    style={{ height: attributes.textArea.heightProp }}
+                    disabled
                 />
             </div>
 
-            <Star props={{ props }} />
-            <Sidebar props={props} />
+            <Star />
         </>
     )
 }

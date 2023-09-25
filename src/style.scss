@@ -1,14 +1,11 @@
-/**
- * The following styles get applied both on the front of your site
- * and in the editor.
- *
- * Replace them with your own styles or remove the file completely.
- */
-
-@import './editor/Star';
+@import './style/star';
 
 .wp-block-create-block-form-block {
     text-align: center;
+
+    .form-block-logo {
+        display: inline-block;
+    }
 
     .form-block-title {
         margin-bottom: 0;

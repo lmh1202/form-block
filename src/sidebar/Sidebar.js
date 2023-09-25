@@ -1,8 +1,3 @@
-/**
- * Retrieves the translation of text.
- *
- * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-i18n/
- */
 import { __ } from '@wordpress/i18n';
 
 import {
@@ -16,25 +11,25 @@ import {
     InspectorControls,
 } from '@wordpress/block-editor';
 
-export default function Sidebar({ props }) {
+export default function Sidebar({ attributes, setAttributes }) {
     return (
         <>
             <InspectorControls>
-                <PanelBody title='Chanel setting'>
+                <PanelBody title='Setting'>
                     <div className='form-block-sidebar'>
                         <fieldset>
                             <legend>{__('Title', 'form-block')}</legend>
-                            <TextControl value={props.attributes.title} onChange={(nextValue) => props.setAttributes({ title: nextValue })} />
+                            <TextControl value={attributes.title} onChange={(nextValue) => setAttributes({ title: nextValue })} />
                         </fieldset>
                         <fieldset>
                             <legend>{__('Subtitle', 'form-block')}</legend>
-                            <TextControl value={props.attributes.subtitle} onChange={(nextValue) => props.setAttributes({ subtitle: nextValue })} />
+                            <TextControl value={attributes.subtitle} onChange={(nextValue) => setAttributes({ subtitle: nextValue })} />
                         </fieldset>
                         <fieldset>
                             <ToggleControl
                                 label="Hide Radio"
-                                checked={props.attributes.toggle}
-                                onChange={(e) => props.setAttributes({ toggle: e })}
+                                checked={attributes.toggle}
+                                onChange={(e) => setAttributes({ toggle: e })}
                             />
                         </fieldset>
                         <fieldset>
@@ -42,8 +37,8 @@ export default function Sidebar({ props }) {
                                 {__('Textarea Height', 'form-block')}
                             </legend>
                             <NumberControl
-                                value={props.attributes.textArea.heightProp}
-                                onChange={(e) => props.setAttributes({ textArea: { ...props.attributes.textArea, heightProp: e } })
+                                value={attributes.textArea.heightProp}
+                                onChange={(e) => setAttributes({ textArea: { ...attributes.textArea, heightProp: e } })
                                 }
                             />
                         </fieldset>
