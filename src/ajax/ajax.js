@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
     })
 
     const submitBtn = document.querySelector('button[id="form-block-submit-btn"]')
-    submitBtn.addEventListener('click', function () {
+    submitBtn.addEventListener('click', async function () {
         const comment = document.getElementById('form-block-textarea').value
 
         const urlParams = new URLSearchParams(window.location.search);
@@ -31,14 +31,17 @@ document.addEventListener('DOMContentLoaded', function () {
             alert("Please input comment!")
             return
         } else {
-            fetch("https://yaysnippet.test/wp-admin/admin-ajax.php", requestOptions)
-                .then(response => alert('Add comment successfully'))
-                .then(result => location.reload())
-                .catch(error => console.log('error', error));
+            try {
+                const response = await fetch("https://yaysnippet.test/wp-admin/admin-ajax.php", requestOptions)
+                const result = await response.json();
+                if (result.success) {
+                    location.reload()
+                } else {
+                    alert(result.data.message);
+                }
+            } catch (error) {
+                console.error("Error:", error)
+            }
         }
     })
 })
-
-
-
-

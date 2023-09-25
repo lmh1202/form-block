@@ -26,7 +26,7 @@ function handle_ajax()
 {   
     $wp_json_error = array(
         'status'=>500,
-        'message' => 'Data Error'
+        'message' => 'Add new comment failed'
     );
 
     if (empty($_POST)) {
